@@ -1,6 +1,6 @@
 ####Javascript selection engine
 
-That engine returns DOM elements by given CSS selector
+This engine returns DOM elements by given CSS selector
 
 #####To use
 
