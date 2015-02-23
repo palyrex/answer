@@ -9,18 +9,7 @@ var $ = function (selector) {
 
     findByTag(selector, elements);
 
-    if (selector.indexOf(".") >= 0 && selector.indexOf("#") === -1) {
-      var classTags = document.getElementsByTagName(selector.slice(0, selector.indexOf(".")));
-
-      for (i = 0; i < classTags.length; i++) { 
-        objectClassName = selector.slice(selector.indexOf(".") + 1, selector.length);
-        if (classTags[i].className.indexOf(objectClassName) >= 0) {
-          elements.push(classTags[i]);
-        }
-      }
-    }
-
-    else if (selector.indexOf(".") === -1 && selector.indexOf("#") >= 0) {
+    if (selector.indexOf(".") === -1 && selector.indexOf("#") >= 0) {
       tagById(selector, elements);
     }
 
@@ -52,7 +41,16 @@ var findByTag = function(selector, elements) {
     for (i = 0; i < tagResults.length; i++) { 
       elements.push(tagResults[i]);
     }
-  } 
+  } else if (selector.indexOf(".") >= 0 && selector.indexOf("#") === -1) {
+      var classTags = document.getElementsByTagName(selector.slice(0, selector.indexOf(".")));
+
+      for (i = 0; i < classTags.length; i++) { 
+        objectClassName = selector.slice(selector.indexOf(".") + 1, selector.length);
+        if (classTags[i].className.indexOf(objectClassName) >= 0) {
+          elements.push(classTags[i]);
+        }
+      }
+    }
 };
 
 var tagById = function(selector, elements) {
